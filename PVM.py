@@ -6,17 +6,22 @@ Created on Tue Apr 30 20:19:13 2019
 @author: f
 """
 
-class ExpectedValue (BCS, BCS-Probability, WCS, WCS-Probability):
-    return ((BCS * BCS-Probability)+(WCS * WCS-Probability))
+class DesicionTheory ():
+    def ExpectedValue (BCS, BCS-Probability):
+        return ((BCS * BCS-Probability)+(WCS * WCS-Probability))
     
-
-class Utilitarianism (CommonGood, IndividualCompromise):
+class Ethics (): 
+    value = 0
+    
+    def Utilitarianism (CommonGood, IndividualGood):
+            return value
         
-    
-class Egoism (CommonGood, IndividualCompromise)
-    
+    def Egoism (CommonGood, IndividualCompromise):
+            return value
+
 
 def main():
+    yo = "waddup"
     
     
-main():
+main()
