@@ -1,3 +1,4 @@
+
 from flask import Flask, request
 
 from processing import do_calculation
@@ -72,17 +73,30 @@ def adder_page():
     return '''
         <html>
             <body>
-                {errors}
-                <p>Enter your Values:
+                <title> Autonomous Policy Value Maximization </title>
+		<h1> Autonomous Policy Value Maximization  </h1>
+		
+		{errors}
+               
+		<p>
                 <form method="post" action=".">
-                    <p>Budget cost (0 to 100):<input name="budget" /></p>
+                    <h2> Presets: </h2>
+		    Select preset: <select name="preset">
+		        <option value= 0> No Preset (manual entry) </option>
+			<option value= 1> Medicare For All (United States) </option>
+			<option value= 2> Land redistribution (South Africa) </option>
+			<option value= 3> Brexit (United Kingdom) </option>
+		    </select>
+		    <h2> Manual Entry: </h2> 
+		    <p>Budget cost (0 to 100):<input name="budget" /></p>
                     <p>Probability of success (0 to 100):<input name="probability" /></p>
                     <p>Public Approval (-100 to 100):<input name="approval" /></p>
                     <p>If the policy succeeds, common good will be (-100 to 100):<input name="bcs_cg" /></p>
                     <p>If the policy succeeds, individual good will be (-100 to 100):<input name="bcs_ig" /></p>
                     <p>If the policy fails, common good will be (-100 to 100):<input name="wcs_cg" /></p>
                     <p>If the policy fails, Individual good will be (-100 to 100):<input name="wcs_ig" /></p>
-                    <select name="ethics">
+                    <h2> Evaluate: </h2>
+		    Ethical System to evaluate: <select name="ethics">
                       <option value="Utilitarianism">Utilitarianism</option>
                       <option value="IdealUtilitarianism">Ideal Utilitarianism</option>
                       <option value="LiberalIndividualism">Liberal Individualism</option>
