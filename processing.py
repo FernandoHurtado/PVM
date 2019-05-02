@@ -101,10 +101,20 @@ class Ethics ():
 
 def do_calculation(budget, probability, approval, bcs_cg, bcs_ig, wcs_cg, wcs_ig, ethics): # for testing purpouses
     Submission = Values(Budget = budget,Probability = probability,Approval = approval,BCS_CG=bcs_cg,BCS_IG = bcs_ig,WCS_CG=wcs_cg,WCS_IG=wcs_ig)
-    MedicareForAll = Values(Budget = 20,Probability = 90,Approval = 50,BCS_CG=100,BCS_IG = -20,WCS_CG=50,WCS_IG=-90)
     return Evaluate(Submission, ethics)
-'''
 
+def preset_calculation(preset, ethics): # for testing purpouses
+    if preset is 1:
+        MedicareForAll = Values(Budget = 30,Probability = 90,Approval = 65,BCS_CG=90,BCS_IG = -20,WCS_CG=50,WCS_IG=-80)
+        return Evaluate(MedicareForAll, ethics)
+    if preset is 2:
+        LandRedistribution = Values(Budget = 20,Probability = 60,Approval = 55,BCS_CG=100,BCS_IG = -70,WCS_CG=40,WCS_IG=-100)
+        return Evaluate(LandRedistribution, ethics)
+    if preset is 3:
+        Brexit = Values(Budget = 10,Probability = 10,Approval = 55,BCS_CG=50,BCS_IG =50,WCS_CG=-50,WCS_IG=-70)
+        return Evaluate(Brexit, ethics)
+
+'''
 def do_calculation(budget, probability):
     MedicareForAll = Values(Budget = 20,Probability = 90,Approval = 50,BCS_CG=100,BCS_IG = -20,WCS_CG=50,WCS_IG=-90)
     return Evaluate(MedicareForAll, 'Utilitarianism')
@@ -123,3 +133,4 @@ def Evaluate(Values, name):
         msg += "should not be passed"
 
     return (EV, msg)
+

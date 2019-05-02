@@ -2,6 +2,7 @@
 from flask import Flask, request
 
 from processing import do_calculation
+from processing import preset_calculation
 
 app = Flask(__name__)
 
@@ -18,6 +19,29 @@ def adder_page():
         wcs_cg = None
         wcs_ig = None
         ethics = None
+        preset = None
+
+        try:
+            ethics = str(request.form["ethics"])
+        except:
+            errors += "<p>{!r} is not valid.</p>\n".format(request.form["ethics"])
+
+        try:
+            preset = int(request.form["preset"])
+        except:
+            errors += "<p>{!r} is not valid.</p>\n".format(request.form["preset"])
+
+        if preset is not None and preset is not 0:
+            result, msg = preset_calculation(preset, ethics)
+            return '''
+                <html>
+                    <body>
+                        <p>The final expected value is {result}</p>
+                        <p>{msg}</p>
+                        <p><a href="/PVM/">Click here to calculate again</a>
+                    </body>
+                </html>
+            '''.format(result=result, msg=msg)
 
         try:
             budget = int(request.form["budget"])
@@ -53,10 +77,6 @@ def adder_page():
         except:
             errors += "<p>{!r} is not a number.</p>\n".format(request.form["wcs_ig"])
 
-        try:
-            ethics = str(request.form["ethics"])
-        except:
-            errors += "<p>{!r} is not valid.</p>\n".format(request.form["ethics"])
 
         if budget is not None and probability is not None and approval is not None and bcs_cg is not None and bcs_ig is not None and wcs_cg is not None and wcs_ig is not None:
             result, msg = do_calculation(budget, probability, approval, bcs_cg, bcs_ig, wcs_cg, wcs_ig, ethics)
@@ -75,9 +95,9 @@ def adder_page():
             <body>
                 <title> Autonomous Policy Value Maximization </title>
 		<h1> Autonomous Policy Value Maximization  </h1>
-		
+
 		{errors}
-               
+
 		<p>
                 <form method="post" action=".">
                     <h2> Presets: </h2>
@@ -87,7 +107,7 @@ def adder_page():
 			<option value= 2> Land redistribution (South Africa) </option>
 			<option value= 3> Brexit (United Kingdom) </option>
 		    </select>
-		    <h2> Manual Entry: </h2> 
+		    <h2> Manual Entry: </h2>
 		    <p>Budget cost (0 to 100):<input name="budget" /></p>
                     <p>Probability of success (0 to 100):<input name="probability" /></p>
                     <p>Public Approval (-100 to 100):<input name="approval" /></p>
