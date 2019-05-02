@@ -7,7 +7,6 @@ Created on Tue Apr 30 20:19:13 2019
 """
 from collections import namedtuple
 Values = namedtuple('Values','Budget Probability Approval BCS_CG BCS_IG WCS_CG WCS_IG')
-MedicareForAll = Values(Budget = 20,Probability = 90,Approval = 50,BCS_CG=100,BCS_IG = -20,WCS_CG=50,WCS_IG=-90)
 
 
 
@@ -103,7 +102,8 @@ class Ethics ():
     
     
 def main(): # for testing purpouses 
-    Evaluate(MedicareForAll, 'Relativism')
+    MedicareForAll = Values(Budget = 20,Probability = 90,Approval = 50,BCS_CG=100,BCS_IG = -20,WCS_CG=50,WCS_IG=-90)    
+    Evaluate(MedicareForAll, 'Nihilism')
     
 def Evaluate(Values, name):
     
