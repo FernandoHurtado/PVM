@@ -1,2 +1,0 @@
-# PVM
-Policy Value Maximization
